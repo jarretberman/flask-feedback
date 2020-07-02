@@ -1,0 +1,30 @@
+{%extends 'base.html'%}
+
+{%block content%}
+<div class="container">
+    <div class="row">
+        <div class="card">
+            <div class="card-body">
+                <h5 class='cardtitle'>{{user.first_name}}{{user.last_name}}</h5>
+                <p class="card-text">{{user.username}}</p>
+                <p class="card-text">{{user.email}}</p>
+                <a href="/users/{{user.username}}/edit" class="btn btn-sm btn-warning">edit</a>
+                <a href="/users/{{user.username}}/delete" class="btn btn-sm btn-danger">delete</a>
+                <a href="/feedback" class="btn btn-sm btn-danger">Add feedback</a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            {%for post in user.posts%}
+            <div class="row border rounded my-1">
+                <h4>{{post.title}}</h4>
+                <p>{{post.content}}</p>
+                <a href="/feedback/{{post.id}}/edit" class="btn btn-sm btn-warning">edit</a>
+                <a href="/feedback/{{post.id}}/delete" class="btn btn-sm btn-danger">delete</a>
+            </div>
+            {%endfor%}
+        </div>
+    </div>
+</div>
+{%endblock%}
